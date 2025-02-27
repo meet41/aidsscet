@@ -1,0 +1,266 @@
+ShowStudent: 
+import React, { useState, useEffect } from 'react';
+import { getDatabase, ref, get, remove } from 'firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import './showstudinfo.css';
+import MainStudent from './MainStudent';
+
+const ShowStudInfo = () => {
+  const [students, setStudents] = useState([]);
+  const [filteredStudents, setFilteredStudents] = useState([]);
+  const [batchTypes, setBatchTypes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [batchType, setBatchType] = useState('');
+
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchData();
+      } else {
+        setError('User is not authenticated');
+      }
+    });
+  }, []);
+
+  const fetchData = () => {
+    setLoading(true);
+    setError(null);
+
+    const db = getDatabase();
+    const studInfoRef = ref(db, 'studentInfo');
+
+    // Fetch student information
+    get(studInfoRef)
+      .then((snapshot) => {
+        setLoading(false);
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const formattedData = Object.keys(data).map((key) => ({ id: key, ...data[key] }));
+          setStudents(formattedData);
+          setFilteredStudents(formattedData);
+
+          // Extract unique batch types from student data
+          const uniqueBatchTypes = [...new Set(formattedData.map(student => student.batchType))];
+          setBatchTypes(uniqueBatchTypes);
+        } else {
+          setStudents([]);
+          setFilteredStudents([]);
+          setBatchTypes([]);
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError('Error fetching student info: ' + error.message);
+      });
+  };
+
+  useEffect(() => {
+    if (batchType) {
+      setFilteredStudents(students.filter(student => student.batchType === batchType));
+    } else {
+      setFilteredStudents(students);
+    }
+  }, [batchType, students]);
+
+  const handleDelete = (id) => {
+    const db = getDatabase();
+    const studentRef = ref(db, `studentInfo/${id}`);
+
+    remove(studentRef)
+      .then(() => {
+        setStudents(students.filter(student => student.id !== id));
+        setFilteredStudents(filteredStudents.filter(student => student.id !== id));
+      })
+      .catch((error) => {
+        setError('Error deleting student info: ' + error.message);
+      });
+  };
+
+  return (
+    <div className="show-student-info">
+      <MainStudent />
+      <h2>Student Information</h2>
+      {loading && <p className="loading-message">Loading student info...</p>}
+      {error && <p className="error-message">{error}</p>}
+      <div className="filter-container">
+        <label htmlFor="batchType">Filter by Batch Type:</label>
+        <select
+          id="batchType"
+          value={batchType}
+          onChange={(e) => setBatchType(e.target.value)}
+        >
+          <option value="">All Batches</option>
+          {batchTypes.map((type, index) => (
+            <option key={index} value={type}>{type}</option>
+          ))}
+        </select>
+      </div>
+      {filteredStudents.length > 0 ? (
+        <table className="students-table">
+          <thead>
+            <tr>
+              <th>Batch Type</th>
+              <th>Enrollment No</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Year</th>
+              <th>Achievement</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredStudents.map((student, index) => (
+              <tr key={index}>
+                <td>{student.batchType}</td>
+                <td>{student.enrollmentNo}</td>
+                <td>{student.name}</td>
+                <td>{student.email}</td>
+                <td>{student.year}</td>
+                <td>{student.achievement}</td>
+                <td>
+                  <button onClick={() => handleDelete(student.id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        !loading && <p>No student info found.</p>
+      )}
+    </div>
+  );
+};
+
+export default ShowStudInfo;
+
+imageupoader : 
+import React, { useState } from 'react';
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { getDatabase, ref as dbRef, set } from 'firebase/database';
+import { useNavigate } from 'react-router-dom';
+import { app } from '../firebase'; // Adjust the import path as needed
+
+function ImageUploader() {
+  const [imageFile, setImageFile] = useState(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [downloadURL, setDownloadURL] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  const handleUpload = () => {
+    if (!imageFile) return;
+
+    const storage = getStorage(app);
+    const storageReference = storageRef(storage, `images/${imageFile.name}`);
+    const uploadTask = uploadBytesResumable(storageReference, imageFile);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setUploadProgress(progress);
+      },
+      (error) => {
+        console.error('Upload failed:', error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          setDownloadURL(url);
+          console.log('File available at', url);
+
+          // Save the download URL to the database
+          const db = getDatabase(app);
+          const dbReference = dbRef(db, 'images/' + imageFile.name);
+          set(dbReference, {
+            url: url,
+            name: imageFile.name,
+          });
+
+          // Redirect to home page after successful upload
+          navigate('/');
+        });
+      }
+    );
+  };
+
+  return (
+    <div>
+      <h2><a href="/others">Click to Add Others Data</a></h2>
+      <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
+      <button onClick={handleUpload} disabled={!imageFile}>Upload</button>
+      <div>Upload Progress: {uploadProgress}%</div>
+      {/* {downloadURL && (
+        <div>
+          <p>File available at:</p>
+          <a href={downloadURL} target="_blank" rel="noopener noreferrer">{downloadURL}</a>
+        </div>
+      )} */}
+    </div>
+  );
+}
+
+export default ImageUploader;
+
+=> firebase.js :
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref as storageRef, listAll, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { getDatabase, ref, query, orderByChild, equalTo, get } from 'firebase/database';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAzfms5zemDO6HT33-H1hXtyp-UErnnJWc",
+  authDomain: "aiscet-23903.firebaseapp.com",
+  databaseURL: "https://aiscet-23903-default-rtdb.firebaseio.com",
+  projectId: "aiscet-23903",
+  storageBucket: "aiscet-23903.appspot.com",
+  messagingSenderId: "1057490352597",
+  appId: "1:1057490352597:web:03c067e10850a5e901655c",
+  measurementId: "G-V3QMCZK1JS"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const database = getDatabase(app);
+
+// Function to fetch results filtered by type
+export const fetchResultsByType = async (type) => {
+  const resultsRef = ref(database, 'results');
+  const resultsQuery = query(resultsRef, orderByChild('type'), equalTo(type));
+
+  // Fetch the data
+  const snapshot = await get(resultsQuery);
+  if (snapshot.exists()) {
+    return snapshot.val();
+  } else {
+    return {};
+  }
+};
+
+export {
+  app,
+  ref,
+  storage,
+  storageRef,
+  uploadBytesResumable,
+  getDownloadURL,
+  listAll,
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  db,
+  collection,
+  addDoc,
+  database
+};
+
+=> extra (for stop):
+rm -rf node_modules
+rm package-lock.json
+npm install
+npm start

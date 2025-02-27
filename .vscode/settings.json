@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ejs": "html",
+        "HILL_CP.C": "cpp",
+        "PR-1_UV.C": "cpp"
+    }
+}

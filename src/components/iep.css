@@ -1,0 +1,58 @@
+.iep-students {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e0f7fa;
+}
+
+.iep-students h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.iep-students a {
+  margin-bottom: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.iep-students a:hover {
+  text-decoration: underline;
+}
+
+.loading-message,
+.error-message,
+.no-data-message {
+  color: #007bff;
+  margin-top: 1rem;
+}
+
+.iep-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.iep-table th,
+.iep-table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.iep-table th {
+  background-color: #f2f2f2;
+  color: #007bff;
+}
+
+.iep-table td a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.iep-table td a:hover {
+  color: #0056b3;
+}

@@ -1,0 +1,72 @@
+.athletic-events-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e0f7fa;
+}
+
+.athletic-events-header {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.athletic-events-container a {
+  margin-bottom: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.athletic-events-container a:hover {
+  text-decoration: underline;
+}
+
+.loading-message,
+.error-message,
+.no-data-message {
+  color: #007bff;
+  margin-top: 1rem;
+}
+
+.athletic-events-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.athletic-events-table th,
+.athletic-events-table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.athletic-events-table th {
+  background-color: #f2f2f2;
+  color: #007bff;
+}
+
+.athletic-events-table td a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.athletic-events-table td a:hover {
+  color: #0056b3;
+}
+
+.athletic-events-table button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #d9534f;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.athletic-events-table button:hover {
+  background-color: #c9302c;
+}

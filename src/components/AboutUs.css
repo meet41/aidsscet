@@ -1,0 +1,24 @@
+.marquee-container {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  .marquee-container .links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .marquee-container .links a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.5s ease;
+  }
+  
+  .marquee-container .links a:hover {
+    color: #0056b3;
+  }

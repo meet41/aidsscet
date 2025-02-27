@@ -1,0 +1,52 @@
+.alumini-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e0f7fa;
+}
+
+.alumini-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.alumini-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.alumini-form label {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.alumini-form input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.alumini-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.alumini-form button:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  color: #007bff;
+  margin-top: 1rem;
+}

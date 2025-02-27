@@ -1,0 +1,52 @@
+.add-industrial-visit {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .add-industrial-visit h2 {
+    text-align: center;
+  }
+  
+  .add-industrial-visit form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-industrial-visit form div {
+    margin-bottom: 15px;
+  }
+  
+  .add-industrial-visit form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .add-industrial-visit form input[type="text"],
+  .add-industrial-visit form input[type="date"],
+  .add-industrial-visit form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .add-industrial-visit form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-industrial-visit form button:disabled {
+    background-color: #ccc;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }

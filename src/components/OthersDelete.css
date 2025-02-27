@@ -1,0 +1,51 @@
+.others-delete-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .others-delete-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .others-delete-table th,
+  .others-delete-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .others-delete-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .others-delete-table td a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .others-delete-table td a:hover {
+    text-decoration: underline;
+  }
+  
+  .others-delete-table button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  .others-delete-table button:hover {
+    background-color: #c9302c;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }

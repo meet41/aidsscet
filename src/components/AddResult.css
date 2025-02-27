@@ -1,0 +1,97 @@
+*{
+  font-size: 1em;
+}
+
+.add-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #cef3f8;
+  }
+  
+  .add-result-header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+  }
+  
+  .add-result-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    gap: 1rem;
+  }
+  
+  .add-result-form div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-result-form label {
+    margin-bottom: 0.5rem;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .add-result-form input[type="text"],
+  .add-result-form input[type="file"] {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  .add-result-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-result-form button:hover {
+    background-color: #0056b3;
+    font-weight: bold;
+  }
+  
+  /* Style for the type buttons */
+  .type-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .type-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border: 2px solid #007bff;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .type-button:hover {
+    background-color: #007bff;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .type-button.selected {
+    background-color: #007bff;
+    font-weight: bold;
+    color: #fff;
+  }
+  

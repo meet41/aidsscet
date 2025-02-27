@@ -1,0 +1,164 @@
+.syllabus-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f0f8ff; /* Light blue background for better readability */
+  }
+  
+  .syllabus-header {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333; /* Darker color for better contrast */
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .submit-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .loading-message,
+  .error-message,
+  .no-data-message {
+    color: #d9534f; /* Red color for error messages */
+    margin-top: 1rem;
+  }
+  
+  .syllabus-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .syllabus-table th,
+  .syllabus-table td {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+  }
+  
+  .syllabus-table th {
+    background-color: #007bff; /* Blue background for table headers */
+    color: #fff; /* White text for better contrast */
+  }
+  
+  .syllabus-table td a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .syllabus-table td a:hover {
+    color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Style for the semester buttons */
+  .semester-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-left: 1%;
+    margin-bottom: 1rem;
+  }
+  
+  .semester-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 2px solid #007bff;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .semester-button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .semester-button.selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .show-calendar-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .show-calendar-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Darker color for better contrast */
+  }
+  
+  .show-calendar-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .show-calendar-container li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .show-calendar-container li h2 {
+    margin: 0 0 10px;
+    color: #007bff;
+  }
+  
+  .show-calendar-container li p {
+    margin: 5px 0;
+    color: #555; /* Darker color for better readability */
+  }
+  
+  .show-calendar-container li a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .show-calendar-container li a:hover {
+    text-decoration: underline;
+  }
+  
+  .show-calendar-container p {
+    text-align: center;
+    color: #333; /* Darker color for better readability */
+  }

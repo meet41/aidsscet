@@ -1,0 +1,191 @@
+.syllabus-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e0f7fa;
+}
+
+.syllabus-header {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.semester-select {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.semester-select select {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.loading-message,
+.error-message,
+.no-data-message {
+  color: #007bff;
+  margin-top: 1rem;
+}
+
+.syllabus-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.syllabus-table th,
+.syllabus-table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.syllabus-table th {
+  background-color: #f2f2f2;
+  color: #007bff;
+}
+
+td {
+  text-align: center;
+}
+
+.syllabus-table td a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.syllabus-table td a:hover {
+  color: #0056b3;
+}
+
+/* Style for the semester buttons */
+.semester-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  /* width: 200px; */
+  margin-left: 1%;
+  margin-bottom: 1rem;
+}
+
+.semester-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.semester-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.semester-button.selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.show-calendar-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.show-calendar-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.show-calendar-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.show-calendar-container li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.show-calendar-container li h2 {
+  margin: 0 0 10px;
+  color: #007bff;
+}
+
+.show-calendar-container li p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.show-calendar-container li a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.show-calendar-container li a:hover {
+  text-decoration: underline;
+}
+
+.show-calendar-container p {
+  text-align: center;
+  color: #777;
+}
+
+.image-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.image-table th,
+.image-table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.image-table th {
+  background-color: #f2f2f2;
+  color: #007bff;
+}
+
+.image-table td {
+  text-align: center;
+  height: 100px;
+}
+
+.image-table td img {
+  width: 600px;
+  height: 200px;
+}
+
+.image-table td button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.image-table td button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,72 @@
+.converse-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e0f7fa;
+}
+
+.converse-container h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.converse-container a {
+  margin-bottom: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.converse-container a:hover {
+  text-decoration: underline;
+}
+
+.loading-message,
+.error-message,
+.no-data-message {
+  color: #007bff;
+  margin-top: 1rem;
+}
+
+.converse-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.converse-table th,
+.converse-table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.converse-table th {
+  background-color: #f2f2f2;
+  color: #007bff;
+}
+
+.converse-table td a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.converse-table td a:hover {
+  color: #0056b3;
+}
+
+.converse-table button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #d9534f;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.converse-table button:hover {
+  background-color: #c9302c;
+}

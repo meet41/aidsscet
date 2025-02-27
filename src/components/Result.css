@@ -1,0 +1,117 @@
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f0f8ff; /* Light blue background for better readability */
+}
+
+.result-header {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333; /* Darker color for better contrast */
+}
+
+.links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.type-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.type-button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #007bff;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.type-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.type-button.selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.filter-select {
+  margin-bottom: 1rem;
+}
+
+.filter-select label {
+  margin-right: 0.5rem;
+  color: #333;
+}
+
+.filter-select select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.loading-message,
+.error-message,
+.no-data-message {
+  color: #d9534f; /* Red color for error messages */
+  margin-top: 1rem;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+td {
+  text-align: center;
+}
+
+.action-buttons {
+  padding: 3px;
+}
+.result-table th,
+.result-table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+}
+
+.result-table th {
+  background-color: #007bff; /* Blue background for table headers */
+  color: #fff; /* White text for better contrast */
+}
+
+.result-table td a {
+  color: #007bff; /* Blue color for links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.result-table td a:hover {
+  color: #0056b3; /* Darker blue on hover */
+}
+
+.delete-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #d9534f;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c9302c;
+}
