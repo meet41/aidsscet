@@ -1,3 +1,5 @@
+/* Navbar.css */
+
 body.dark {
   background-color: #121212;
   color: #ffffff;
@@ -13,9 +15,6 @@ body.dark {
   transition: all 0.5s ease;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .sidebar.close {
@@ -120,6 +119,9 @@ body.dark {
 }
 
 .bottom-content {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
   padding: 0 20px;
 }
 
@@ -181,16 +183,16 @@ body.dark .bottom-content .mode .toggle-switch .switch {
 }
 
 .bottoms {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
   list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .bottom-links {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0;
 }
 
 .bottom-links li a {
@@ -212,18 +214,20 @@ body.dark .bottom-content .mode .toggle-switch .switch {
 
 @media (min-width: 768px) {
   .bottoms {
-    margin-top: 20%;
+    bottom: 30px;
+  }
+
+  .bottom-links li a {
+    margin-top: 30px;
   }
 }
 
 @media (min-width: 1024px) {
   .bottoms {
-    margin-top: 15%;
+    bottom: 40px;
   }
-}
 
-@media (min-width: 1440px) {
-  .bottoms {
-    margin-top: 10%;
+  .bottom-links li a {
+    margin-top: 35px;
   }
 }
