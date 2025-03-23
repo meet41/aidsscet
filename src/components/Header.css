@@ -71,7 +71,8 @@ h2{
     margin-bottom: -40px;
     justify-content: space-between; /* Adjusted to space elements between */
     background-color: #88c9bf;
-    width: 100%; /* Ensure header takes full width */
+    width: calc(100% - 250px); /* Adjust width to account for the sidebar */
+    margin-left: 250px; /* Align with the sidebar */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
     transition: all 0.5s ease;
     z-index: 1000;
@@ -124,6 +125,8 @@ h2 {
     .head {
         flex-direction: column; /* Stack items vertically on smaller screens */
         align-items: flex-start; /* Align items to the start */
+        width: 100%; /* Full width for smaller screens */
+        margin-left: 0; /* Remove left margin */
     }
     .logo {
         width: 100px; /* Adjust logo size for small screens */
@@ -141,6 +144,8 @@ h2 {
     .head {
         flex-direction: row; /* Align items horizontally on larger screens */
         align-items: center; /* Center align items */
+        width: calc(100% - 250px); /* Adjust width to account for the sidebar */
+        margin-left: 250px; /* Align with the sidebar */
     }
     .logo {
         width: 150px; /* Adjust logo size for larger screens */
