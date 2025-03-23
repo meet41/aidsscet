@@ -82,7 +82,7 @@ h2{
     border-radius: 50%;
     width: 150px; /* Keep the logo size as it is */
     height: auto;
-    max-width: 100%; /* Ensure the logo does not become too large */
+/*     max-width: 100%; /* Ensure the logo does not become too large */
 }
 
 .logo-left, .logo-right {
