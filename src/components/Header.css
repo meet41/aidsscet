@@ -78,14 +78,12 @@ h2{
     z-index: 1000;
 }
 
-.logo {
-    border-radius: 50%;
-    width: 150px; /* Keep the logo size as it is */
-    height: auto;
-/*     max-width: 100%; /* Ensure the logo does not become too large */
+.logo{
+  border-radius: 50%;
+  width: 150px;
+  height: auto;
 }
-
-.logo-left, .logo-right {
+.logo-left .logo-right {
     width: 200px;
     height: 200px;
 }
