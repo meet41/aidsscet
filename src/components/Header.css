@@ -129,7 +129,8 @@ h2 {
         margin-left: 0; /* Remove left margin */
     }
     .logo {
-        width: 100px; /* Adjust logo size for small screens */
+/*         width: 100px;  */
+        /* Adjust logo size for small screens */
     }
     .header-text {
         text-align: left; /* Align text to the left */
@@ -148,7 +149,8 @@ h2 {
         margin-left: 250px; /* Align with the sidebar */
     }
     .logo {
-        width: 150px; /* Adjust logo size for larger screens */
+/*         width: 150px;  */
+        /* Adjust logo size for larger screens */
     }
     .header-text {
         text-align: center; /* Center text */
