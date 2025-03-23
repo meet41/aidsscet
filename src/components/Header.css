@@ -1,4 +1,4 @@
-.head {
+/* .head {
     display: flex;
     position: sticky;
     align-items: center;
@@ -57,4 +57,92 @@ h2{
   .main-image {
     max-width: 100%;
     height: auto;
-  }
+  } */
+
+
+.head {
+    display: flex;
+    position: sticky;
+    align-items: center;
+    height: 120px;
+    margin-top: 2vh;
+    padding: 6px;
+    margin-bottom: -40px;
+    justify-content: space-between; /* Adjusted to space elements between */
+    background-color: #88c9bf;
+    width: 100%; /* Ensure header takes full width */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.logo {
+    border-radius: 50%;
+    width: 150px;
+    height: auto;
+}
+
+.logo-left, .logo-right {
+    width: 200px;
+    height: 200px;
+}
+
+h1 {
+    font-size: xx-large;
+}
+
+h2 {
+    font-size: x-large;
+}
+
+.header h1 {
+    color: #000000;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+
+.header-text {
+    flex: 1;
+    text-align: center;
+    color: #000000;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.main-image {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    } 
+    .head {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+    .logo {
+        width: 100px; /* Adjust logo size for small screens */
+    }
+    .header-text {
+        text-align: left; /* Align text to the left */
+        padding-left: 10px; /* Add some padding */
+    }
+}
+
+@media (min-width: 768px) { 
+    .container {
+        flex-direction: row;
+    } 
+    .head {
+        flex-direction: row; /* Align items horizontally on larger screens */
+        align-items: center; /* Center align items */
+    }
+    .logo {
+        width: 150px; /* Adjust logo size for larger screens */
+    }
+    .header-text {
+        text-align: center; /* Center text */
+    }
+}
