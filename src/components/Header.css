@@ -80,7 +80,7 @@ h2{
 
 .logo {
     border-radius: 50%;
-    width: 150px;
+    width: 150px; /* Keep the logo size as it is */
     height: auto;
 }
 
@@ -129,7 +129,7 @@ h2 {
         margin-left: 0; /* Remove left margin */
     }
     .logo {
-/*         width: 100px;  */
+        width: 100px; 
         /* Adjust logo size for small screens */
     }
     .header-text {
@@ -149,8 +149,7 @@ h2 {
         margin-left: 250px; /* Align with the sidebar */
     }
     .logo {
-/*         width: 150px;  */
-        /* Adjust logo size for larger screens */
+        width: 150px; /* Keep the logo size as it is */
     }
     .header-text {
         text-align: center; /* Center text */
