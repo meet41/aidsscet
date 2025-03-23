@@ -129,8 +129,13 @@ h2 {
         margin-left: 0; /* Remove left margin */
     }
     .logo {
-        width: 100px; 
-        /* Adjust logo size for small screens */
+        border-radius: 50%;
+        width: 150px; /* Keep the logo size as it is */
+        height: auto;
+    }
+    .logo-left, .logo-right {
+        width: 200px;
+        height: 200px;
     }
     .header-text {
         text-align: left; /* Align text to the left */
@@ -149,7 +154,13 @@ h2 {
         margin-left: 250px; /* Align with the sidebar */
     }
     .logo {
+        border-radius: 50%;
         width: 150px; /* Keep the logo size as it is */
+        height: auto;
+    }
+    .logo-left, .logo-right {
+        width: 200px;
+        height: 200px;
     }
     .header-text {
         text-align: center; /* Center text */
