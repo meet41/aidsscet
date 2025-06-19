@@ -62,35 +62,20 @@ h2{
 
 
 .head {
-    /* display: flex;
+    display: flex;
     position: sticky;
     align-items: center;
     height: 120px;
     margin-top: 2vh;
     padding: 6px;
     margin-bottom: -40px;
-    justify-content: space-between; 
+    justify-content: space-between; /* Adjusted to space elements between */
     background-color: #88c9bf;
-    width: calc(100% - 250px); 
-    margin-left: 250px;
-    box-sizing: border-box;
+    width: calc(100% - 250px); /* Adjust width to account for the sidebar */
+    margin-left: 250px; /* Align with the sidebar */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
     transition: all 0.5s ease;
-    z-index: 1000; */
-
-    display: flex;
-    position: fixed; /* Changed from sticky to fixed */
-    align-items: center;
-    height: 120px;
-    top: 0;
-    left: 0;
-    margin: 0; /* Remove margin */
-    padding: 0 16px; /* Minimal horizontal padding */
-    justify-content: space-between;
-    background-color: #88c9bf;
-    width: 100%; /* Full width */
-    box-sizing: border-box;
-    transition: all 0.5s ease;
-    z-index: 1100; /* Above sidebar */
+    z-index: 1000;
 }
 
 .logo{
@@ -125,7 +110,6 @@ h2 {
 
 .main-content {
     padding: 20px;
-    margin-top: 120px; /* Push content below header */
 }
 
 .main-image {
