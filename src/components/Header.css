@@ -4,78 +4,32 @@
     align-items: center;
     height: 120px;
     margin-top: 2vh;
-    margin-left: 17.7%;
     padding: 6px;
     margin-bottom: -40px;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #88c9bf;
-}
-.logo{
-  border-radius: 50%;
-  width: 150px;
-  height: auto;
-}
-.logo-left .logo-right {
-    width: 200px;
-    height: 200px;
-}
-
-h1{
-  font-size: xx-large;
-}
-h2{
-  font-size: x-large;
-}
-.header h1 {
-    color: #000000;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 600;
-}
-  @media (max-width: 768px) {
-    .container { flex-direction: column; 
-     } 
-   } 
-   @media (min-width: 768px) { 
-   .container {
-    flex-direction: row; 
-     } 
-   }
-  .logo-left, .logo-right {
-    width: 100px;
-    height: auto;
-  }
-  
-  .header-text {
-    flex: 1;
-    text-align: center;
-    color: #000000;
-  }
-  .main-content {
-    padding: 20px;
-  }
-  
-  .main-image {
-    max-width: 100%;
-    height: auto;
-  } */
-
-
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    box-sizing: border-box;
+    transition: all 0.5s ease;
+    z-index: 1000;
+} */
 
 .head {
     display: flex;
-    position: sticky;
+    position: fixed; /* Changed from sticky to fixed */
     align-items: center;
     height: 120px;
-    margin-top: 2vh;
-    padding: 6px;
-    margin-bottom: -40px;
-    justify-content: space-between; /* Adjusted to space elements between */
+    top: 0;
+    left: 0;
+    margin: 0; /* Remove margin */
+    padding: 0 16px; /* Minimal horizontal padding */
+    justify-content: space-between;
     background-color: #88c9bf;
-    width: calc(100% - 250px); /* Adjust width to account for the sidebar */
-    margin-left: 250px; /* Align with the sidebar */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    width: 100%; /* Full width */
+    box-sizing: border-box;
     transition: all 0.5s ease;
-    z-index: 1000;
+    z-index: 1100; /* Above sidebar */
 }
 
 .logo{
@@ -122,17 +76,17 @@ h2 {
         flex-direction: column;
     } 
     .head {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        align-items: flex-start; /* Align items to the start */
-        width: 100%; /* Full width for smaller screens */
-        margin-left: 0; /* Remove left margin */
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-left: 0;
     }
     .logo {
-        width: 100px; /* Adjust logo size for small screens */
+        width: 100px;
     }
     .header-text {
-        text-align: left; /* Align text to the left */
-        padding-left: 10px; /* Add some padding */
+        text-align: left;
+        padding-left: 10px;
     }
 }
 
@@ -141,16 +95,16 @@ h2 {
         flex-direction: row;
     } 
     .head {
-        flex-direction: row; /* Align items horizontally on larger screens */
-        align-items: center; /* Center align items */
-        width: calc(100% - 250px); /* Adjust width to account for the sidebar */
-        margin-left: 250px; /* Align with the sidebar */
+        flex-direction: row;
+        align-items: center;
+        width: calc(100% - 250px);
+        margin-left: 250px;
     }
     .logo {
-        width: 150px; /* Keep the logo size as it is */
+        width: 150px;
     }
     .header-text {
-        text-align: center; /* Center text */
+        text-align: center;
     }
 }
 
