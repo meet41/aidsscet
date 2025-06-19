@@ -1,4 +1,4 @@
-/* Navbar.css */
+Navbar.css
 
 body.dark {
   background-color: #121212;
@@ -10,7 +10,7 @@ body.dark {
   height: 100vh;
   background: #2c3e50;
   position: fixed;
-  top: 0;
+  top: 120px; /* Adjusted to account for the fixed header */
   left: 0;
   transition: all 0.5s ease;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -54,6 +54,7 @@ body.dark {
 .sidebar .menu-bar .menu-links {
   list-style: none;
   padding: 0;
+  margin: 0 0 8px 0; /* Small gap below main links */
 }
 
 .sidebar .menu-bar .menu-links .nav-link {
