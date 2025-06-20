@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -58,6 +58,16 @@ const Navbar = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      console.log("User logged out successfully!");
+    } catch (error) {
+      console.error("Error logging out:", error.message);
+    }
+  };
+
   const handleMouseEnter = (e) => {
     const dropdownContent = e.currentTarget.querySelector('.dropdown-content');
     if (dropdownContent) {
@@ -78,6 +88,12 @@ const Navbar = () => {
         <div className="menu-bar">
           <div className="menu">
             <ul className="menu-links">
+              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <a href="/">
+                  <i className='bx bx-home-alt icon'></i>
+                  <span className="text nav-text">Home Page</span>
+                </a>
+              </li>
               <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <a href="/Aboutus">
                   <i className='bx bx-home-alt icon'></i>
@@ -189,26 +205,38 @@ const Navbar = () => {
                   ))}
                 </div>
               </li>
-            </ul>
-            <ul className="nav-links bottoms bottom-links">
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href={isLoggedIn ? "#" : "/signin"}>
-                  <i className='bx bx-wallet icon'></i>
-                  <span className="text nav-text">{isLoggedIn ? "Logged In" : "Sign In"}</span>
-                </a>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/imageupload">
-                  <i className='bx bx-wallet icon'></i>
-                  <span className="text nav-text">Home Page Image Upload</span>
-                </a>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/others">
-                  <i className='bx bx-wallet icon'></i>
-                  <span className="text nav-text">Add Quick Links</span>
-                </a>
-              </li>
+              {isLoggedIn ? (
+                <li className="nav-link" onClick={handleLogout} style={{ cursor: 'pointer' }}>
+                  <a>
+                    <i className='bx bx-log-out icon'></i>
+                    <span className="text nav-text">Logout</span>
+                  </a>
+                </li>
+              ) : (
+                <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  <a href="/signin">
+                    <i className='bx bx-log-in icon'></i>
+                    <span className="text nav-text">Sign In</span>
+                  </a>
+                </li>
+              )}
+
+              {isLoggedIn && (
+                <>
+                  <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <a href="/imageupload">
+                      <i className='bx bx-image-add icon'></i> {/* Example icon for image upload */}
+                      <span className="text nav-text">Home Page Image Upload</span>
+                    </a>
+                  </li>
+                  <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                    <a href="/others">
+                      <i className='bx bx-link-alt icon'></i> {/* Example icon for quick links */}
+                      <span className="text nav-text">Add Quick Links</span>
+                    </a>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>
