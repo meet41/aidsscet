@@ -121,38 +121,10 @@ function Slider() {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const handleLogout = () => {
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      setIsLoggedIn(false);
-    }).catch((error) => {
-      console.error("Error signing out:", error);
-    });
-  };
-
   return (
     <div className="App">
       <div className="header-container">
         <Header />
-        {isLoggedIn && (
-          <button onClick={handleLogout} className="logout-button">
-            Logout
-          </button>
-        )}
       </div>
       <Navbar />
       <div className="content">
