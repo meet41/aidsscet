@@ -1,4 +1,3 @@
-/* Reset default browser styles */
 * {
   padding: 0;
   margin: 0;
@@ -11,11 +10,10 @@ html {
 }
 
 body {
-  /* background: linear-gradient(135deg, yellow 60%, cyan); */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow: hidden; /* Prevent body from scrolling */
+  overflow: hidden;
 }
 
 body, html {
@@ -27,25 +25,21 @@ body, html {
 .App {
   display: flex;
   flex-direction: column;
-  /* background: linear-gradient(135deg, yellow 60%, cyan); */
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0rem;
   height: 100vh;
-  overflow: hidden; /* Prevent App from scrolling */
+  overflow: hidden;
 }
 
-/* Hide scrollbar for WebKit browsers */
 .content::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for Firefox */
 .content {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Header and Footer */
 .header, .footer {
   width: 100%;
   left: 10%;
@@ -71,12 +65,10 @@ body, html {
   padding: 1rem;
   text-align: center;
   top: 90%;
-  /* right: 0.4%; */
   position: fixed;
   border-top: 2px solid #ddd;
 }
 
-/* Navbar styles */
 .navbar {
   background-color: #007bff;
   color: #fff;
@@ -110,7 +102,7 @@ body, html {
 
 .logout-button {
   position: absolute;
-  top: 140px; /* Adjust this value based on the height of your header */
+  top: 140px;
   right: 2px;
   padding: 10px 20px;
   background-color: #007bff;
@@ -137,7 +129,6 @@ body, html {
   position: relative;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -161,19 +152,17 @@ body, html {
   }
 }
 
-/* Content section */
 .content {
   margin-top: -0.8em;
   margin-left: 20%;
-  height: calc(100vh - (0.1em)); /* Adjust height to account for header */
+  height: calc(100vh - (0.1em));
   font-size: 18px;
   padding: 3rem 1rem;
   flex: 1;
   margin-bottom: 2%;
-  overflow-y: auto; /* Make content scrollable */
+  overflow-y: auto;
 }
 
-/* Image Slider */
 .slider {
   position: relative;
   width: 100%;
@@ -200,7 +189,6 @@ body, html {
   border-bottom: 2px solid #ddd;
 }
 
-/* Keyframes for slider animation */
 @keyframes slide {
   0% { opacity: 0; }
   20% { opacity: 1; }
