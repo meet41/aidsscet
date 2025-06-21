@@ -2,17 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import './Navbar.css';
+import { Link } from 'react-router-dom'; // Import Link for internal navigation
 
 const Navbar = () => {
-  const [isSidebarClosed, setIsSidebarClosed] = useState(false);
   const [extraLinks, setExtraLinks] = useState([]);
   const [tnpLinks, setTnpLinks] = useState([]);
   const [libraryLinks, setLibraryLinks] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarClosed(!isSidebarClosed);
-  };
 
   useEffect(() => {
     const db = getDatabase();
@@ -63,15 +59,18 @@ const Navbar = () => {
     try {
       await signOut(auth);
       console.log("User logged out successfully!");
+      // Optionally redirect after logout
+      // window.location.href = '/signin';
     } catch (error) {
       console.error("Error logging out:", error.message);
     }
   };
 
+  // --- Dropdown Handlers (for hover) ---
   const handleMouseEnter = (e) => {
     const dropdownContent = e.currentTarget.querySelector('.dropdown-content');
     if (dropdownContent) {
-      dropdownContent.style.display = 'flex';
+      dropdownContent.style.display = 'flex'; // Use flex for vertical stacking of dropdown items
     }
   };
 
@@ -83,168 +82,138 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <nav className={`sidebar ${isSidebarClosed ? 'close' : ''}`}>
-        <div className="menu-bar">
-          <div className="menu">
-            <ul className="menu-links">
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/">
-                  <i className='bx bx-home-alt icon'></i>
-                  <span className="text nav-text">Home Page</span>
-                </a>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/Aboutus">
-                  <i className='bx bx-home-alt icon'></i>
-                  <span className="text nav-text">About Us</span>
-                </a>
-                <div className="dropdown-content">
-                  <a href="/Aboutus">About the Department</a>
-                  <a href="/Message">Message from Head</a>
-                  <a href="/Vision">Vision</a>
-                  <a href="/Mission">Mission</a>
-                  <a href="/Peo">PEOs</a>
-                  <a href="/Po">POs</a>
-                  <a href="/Pso">PSOs</a>
-                  <a href="https://scet.ac.in/department/information-technology/#gsc.tab=0">Staff Information</a>
-                  <a href="/updateabout">Update Aboutus</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/Academics">
-                  <i className='bx bx-bar-chart-alt-2 icon'></i>
-                  <span className="text nav-text">Academics</span>
-                </a>
-                <div className="dropdown-content">
-                  <a href="/Syllabus">Syllabus - AIDS</a>
-                  <a href="/showanalysis">Result Analysis</a>
-                  <a href="/showcalender">Academics Calender</a>
-                  <a href="/showtable">Class & Faculty Time Table</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/Exams">
-                  <i className='bx bx-bell icon'></i>
-                  <span className="text nav-text">Exams</span>
-                </a>
-                <div className="dropdown-content">
-                  <a href="https://intraitai.triple5.in/docs/ContEvaluation/Norms_2023-24.pdf">Continous Evaluation Scheme</a>
-                  <a href="/results">Schedules</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/IndustrialInteraction">
-                  <i className='bx bx-pie-chart-alt icon'></i>
-                  <span className="text nav-text">Industrial Interaction</span>
-                </a>
-                <div className="dropdown-content">
-                  <a href="/showind">Industrial Visit</a>
-                  <a href="/viewtnp">TnP Data</a>
-                  {tnpLinks.map((link) => (
-                    <a key={link.id} href={link.pdfUrl} target="_blank" rel="noopener noreferrer">{link.name}</a>
-                  ))}
-                  <a href="/tnp">Update Tnp</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/StudentCorner">
-                  <i className='bx bx-heart icon'></i>
-                  <span className="text nav-text">Student Corner</span>
-                </a>
-                <div className="dropdown-content">
-                  <a href="/showstud">Student Information</a>
-                  <a href="/showstud">Student Achievements</a>
-                  <a href="/scholar">Scholarships</a>
-                  <a href="/showalumini">Alumini Data</a>
-                  <a href="/iep">IEP Students</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/Events">
-                  <i className='bx bx-wallet icon'></i>
-                  <span className="text nav-text">Events</span>
-                </a>
-                <div className="dropdown-content dropdown-content-upwards">
-                  <a href="/Converse">Converse</a>
-                  <a href="/Converse">Expert Talks/ Workshops/ STTPs</a>
-                  <a href="/showathletics">AIDS Athletics</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/Library">
-                  <i className='bx bx-wallet icon'></i>
-                  <span className="text nav-text">Library</span>
-                </a>
-                <div className="dropdown-content dropdown-content-upwards">
-                  <a href="/viewbook">Books in Dept</a>
-                  <a href="/viewcd">CDs in Dept</a>
-                  {libraryLinks.map((link) => (
-                    <a key={link.id} href={link.pdfUrl} target="_blank" rel="noopener noreferrer">{link.name}</a>
-                  ))}
-                  <a href="/updatelibrary">Update Library</a>
-                </div>
-              </li>
-              <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <a href="/QuickLinks">
-                  <i className='bx bx-wallet icon'></i>
-                  <span className="text nav-text">Quick Links</span>
-                </a>
-                <div className="dropdown-content dropdown-content-upwards">
-                  <a href="https://intraitai.triple5.in/docs/holiday/holidays.pdf">List of Holidays</a>
-                  <a href="https://intraitai.triple5.in/docs/committees/list/2024-2025.pdf">Department Committee: 2024-25</a>
-                  <a href="https://intraitai.triple5.in/docs/classteachers/2024-2025.pdf">Class Teachers : 2024-25</a>
-                  <a href="https://intraitai.triple5.in/docs/CR-LR-Form.pdf">CR LR Candidate Form</a>
-                  <a href="https://www.scetlms.in/">SCET Leave Management</a>
-                  <a href="https://intraitai.triple5.in/docs/intra.pdf">Intra Phone Directory</a>
-                  <a href="http://172.16.11.2/">College Intranet</a>
-                  <a href="http://172.16.3.1:4080/login/index.php">Kerio Firewall</a>
-                  <a href="https://intraitai.triple5.in/docs/internet_policy.pdf">Policy for Internet Usage</a>
-                  {extraLinks.map((link) => (
-                    <a key={link.id} href={link.pdfUrl} target="_blank" rel="noopener noreferrer">{link.name}</a>
-                  ))}
-                </div>
-              </li>
-              {isLoggedIn ? (
-                <li className="nav-link" onClick={handleLogout} style={{ cursor: 'pointer' }}>
-                  <a>
-                    <i className='bx bx-log-out icon'></i>
-                    <span className="text nav-text">Logout</span>
-                  </a>
-                </li>
-              ) : (
-                <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                  <a href="/signin">
-                    <i className='bx bx-log-in icon'></i>
-                    <span className="text nav-text">Sign In</span>
-                  </a>
-                </li>
-              )}
+    <nav className="navbar-horizontal">
+      <ul className="menu-links">
+        {/* Home */}
+        <li className="nav-item" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <i className='fax fa-home'></i>
+          <Link to="/">Home</Link>
+        </li>
 
-              {isLoggedIn && (
-                <>
-                  <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <a href="/imageupload">
-                      <i className='bx bx-image-add icon'></i> {/* Example icon for image upload */}
-                      <span className="text nav-text">Home Page Image Upload</span>
-                    </a>
-                  </li>
-                  <li className="nav-link" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <a href="/others">
-                      <i className='bx bx-link-alt icon'></i> {/* Example icon for quick links */}
-                      <span className="text nav-text">Add Quick Links</span>
-                    </a>
-                  </li>
-                </>
-              )}
-            </ul>
+        {/* About Us */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/Aboutus">About Us</Link>
+          <div className="dropdown-content">
+            <Link to="/Aboutus">About the Department</Link>
+            <Link to="/Message">Message from Head</Link>
+            <Link to="/Vision">Vision</Link>
+            <Link to="/Mission">Mission</Link>
+            <Link to="/Peo">PEOs</Link>
+            <Link to="/Po">POs</Link>
+            <Link to="/Pso">PSOs</Link>
+            <a href="https://scet.ac.in/department/information-technology/#gsc.tab=0" target="_blank" rel="noopener noreferrer">Staff Information</a>
+            <Link to="/updateabout">Update Aboutus</Link>
           </div>
-        </div>
-      </nav>
-      <section className="home">
-        {/* <div className="text">Dashboard Sidebar</div> */}
-      </section>
-    </div>
+        </li>
+
+        {/* Academics */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/Academics">Academics</Link>
+          <div className="dropdown-content">
+            <Link to="/Syllabus">Syllabus - AIDS</Link>
+            <Link to="/showanalysis">Result Analysis</Link>
+            <Link to="/showcalender">Academics Calender</Link>
+            <Link to="/showtable">Class & Faculty Time Table</Link>
+          </div>
+        </li>
+
+        {/* Exams */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/Exams">Exams</Link>
+          <div className="dropdown-content">
+            <a href="https://intraitai.triple5.in/docs/ContEvaluation/Norms_2023-24.pdf" target="_blank" rel="noopener noreferrer">Continous Evaluation Scheme</a>
+            <Link to="/results">Schedules</Link>
+          </div>
+        </li>
+
+        {/* Industrial Interaction */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/IndustrialInteraction">Industrial Interaction</Link>
+          <div className="dropdown-content">
+            <Link to="/showind">Industrial Visit</Link>
+            <Link to="/viewtnp">TnP Data</Link>
+            {tnpLinks.map((link) => (
+              <a key={link.id} href={link.pdfUrl} target="_blank" rel="noopener noreferrer">{link.name}</a>
+            ))}
+            <Link to="/tnp">Update Tnp</Link>
+          </div>
+        </li>
+
+        {/* Student Corner */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onOnMouseLeave={handleMouseLeave}>
+          <Link to="/StudentCorner">Student Corner</Link>
+          <div className="dropdown-content">
+            <Link to="/showstud">Student Information</Link>
+            <Link to="/showstud">Student Achievements</Link>
+            <Link to="/scholar">Scholarships</Link>
+            <Link to="/showalumini">Alumini Data</Link>
+            <Link to="/iep">IEP Students</Link>
+          </div>
+        </li>
+
+        {/* Events */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/Events">Events</Link>
+          <div className="dropdown-content">
+            <Link to="/Converse">Converse</Link>
+            <Link to="/Converse">Expert Talks/ Workshops/ STTPs</Link>
+            <Link to="/showathletics">AIDS Athletics</Link>
+          </div>
+        </li>
+
+        {/* Library */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/Library">Library</Link>
+          <div className="dropdown-content">
+            <Link to="/viewbook">Books in Dept</Link>
+            <Link to="/viewcd">CDs in Dept</Link>
+            {libraryLinks.map((link) => (
+              <a key={link.id} href={link.pdfUrl} target="_blank" rel="noopener noreferrer">{link.name}</a>
+            ))}
+            <Link to="/updatelibrary">Update Library</Link>
+          </div>
+        </li>
+
+        {/* Quick Links */}
+        <li className="nav-item dropdown" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <Link to="/QuickLinks">Quick Links</Link>
+          <div className="dropdown-content">
+            <a href="https://intraitai.triple5.in/docs/holiday/holidays.pdf" target="_blank" rel="noopener noreferrer">List of Holidays</a>
+            <a href="https://intraitai.triple5.in/docs/committees/list/2024-2025.pdf" target="_blank" rel="noopener noreferrer">Department Committee: 2024-25</a>
+            <a href="https://intraitai.triple5.in/docs/classteachers/2024-2025.pdf" target="_blank" rel="noopener noreferrer">Class Teachers : 2024-25</a>
+            <a href="https://intraitai.triple5.in/docs/CR-LR-Form.pdf" target="_blank" rel="noopener noreferrer">CR LR Candidate Form</a>
+            <a href="https://www.scetlms.in/" target="_blank" rel="noopener noreferrer">SCET Leave Management</a>
+            <a href="https://intraitai.triple5.in/docs/intra.pdf" target="_blank" rel="noopener noreferrer">Intra Phone Directory</a>
+            <a href="http://172.16.11.2/" target="_blank" rel="noopener noreferrer">College Intranet</a>
+            <a href="http://172.16.3.1:4080/login/index.php">Kerio Firewall</a>
+            <a href="https://intraitai.triple5.in/docs/internet_policy.pdf" target="_blank" rel="noopener noreferrer">Policy for Internet Usage</a>
+            {extraLinks.map((link) => (
+              <a key={link.id} href={link.pdfUrl} target="_blank" rel="noopener noreferrer">{link.name}</a>
+            ))}
+          </div>
+        </li>
+
+        {/* Admin Links (conditional) - Now correctly placed */}
+        {isLoggedIn ? (
+          <>
+            <li className="nav-item">
+              <Link to="/imageupload">Home Page Image Upload</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/others">Add Quick Links</Link>
+            </li>
+            {/* Logout link also conditional */}
+            <li className="nav-item" onClick={handleLogout}>
+              <Link to="#">Logout</Link>
+            </li>
+          </>
+        ) : (
+          <li className="nav-item">
+            <Link to="/signin">Sign In</Link>
+          </li>
+        )}
+      </ul>
+    </nav>
   );
 };
 
