@@ -10,7 +10,7 @@ function Header() {
         <img src={scetLogo} alt="Left Logo" className="logo logo-left" />
         <div className="header-text">
           <h1>Sarvajanik College of Engineering & Technology</h1>
-          <h2>Artificial Intelligence and Data Science</h2>
+          <h2>Department of Artificial Intelligence and Data Science</h2>
         </div>
         <img src={suLogo} alt="Right Logo" className="logo logo-right" />
       </header>
