@@ -64,10 +64,11 @@ import UpdateCalendar from "./components/UpdateCalender";
 import UpdateConverse from "./components/UpdateConverse";
 import UpdateInd from "./components/UpdateInd";
 import UpdateAthletics from "./components/UpdateAthletics";
-import "./App.css";
+import "./App.css"; // Ensure this CSS file is correctly linked
 import axios from 'axios';
 import Syllabus from "./components/Syllabus";
 
+// Utility function to fetch image URLs from Firebase Storage
 const fetchImageUrls = async () => {
   const storageReference = storageRef(storage, 'images/');
   const result = await listAll(storageReference);
@@ -75,6 +76,7 @@ const fetchImageUrls = async () => {
   return Promise.all(urlPromises);
 };
 
+// Image Slider component
 function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [images, setImages] = useState([]);
@@ -102,7 +104,7 @@ function Slider() {
   }, [images]);
 
   if (isLoading) {
-    return <div className="spinner">Loading...</div>;
+    return <div className="slider-spinner">Loading images...</div>;
   }
 
   return (
@@ -119,77 +121,91 @@ function Slider() {
   );
 }
 
+// Main App component
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // This state is not directly used here but kept for context if needed elsewhere
+
+  // Authentication state listener (remains important for Firebase integration)
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user); // Set isLoggedIn based on user presence
+    });
+    return () => unsubscribe(); // Cleanup on component unmount
+  }, []);
+
   return (
     <div className="App">
       <div className="header-container">
         <Header />
       </div>
       <Navbar />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Slider />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/updateabout" element={<UpdateAbout />} />
-          <Route path="/addcd" element={<AddCd />} />
-          <Route path="/viewcd" element={<Cd />} />
-          <Route path="/updatecd/:id" element={<UpdateCd />} />
-          <Route path="/updateresult/:id" element={<UpdateResult />} />
-          <Route path="/updatebook/:id" element={<UpdateBook />} />
-          <Route path="/deleteabout" element={<DeleteAbout />} />
-          <Route path="/Message" element={<Message />} />
-          <Route path="/Vision" element={<Vision />} />
-          <Route path="/Mission" element={<Mission />} />
-          <Route path="/Peo" element={<Peo />} />
-          <Route path="/Po" element={<Po />} />
-          <Route path="/Pso" element={<Pso />} />
-          <Route path="/viewbook" element={<Book />} />
-          <Route path="/addbook" element={<AddBook />} />
-          <Route path="/syllabus" element={<Syllabus />} />
-          <Route path="/updatesyllabus/:id" element={<UpdateSyllabus />} />
-          <Route path="/updateresult/:id" element={<UpdateResult />} />
-          <Route path="/addcalender" element={<AddCalender />} />
-          <Route path="/showcalender" element={<ShowCalendar />} />
-          <Route path="/updatecalendar/:id" element={<UpdateCalendar />} />
-          <Route path="/addtable" element={<AddClassTimetable />} />
-          <Route path="/showtable" element={<ShowClassTimetable />} />
-          <Route path="/updateclasstimetable/:id" element={<UpdateClassTimetable />} />
-          <Route path="/scholar" element={<Scholar />} />
-          <Route path="/alumini" element={<Alumini />} />
-          <Route path="/tnp" element={<Tnp />} />
-          <Route path="/addtnp" element={<AddTnp />} />
-          <Route path="/viewtnp" element={<TnpData />} />
-          <Route path="/updateind/:id" element={<UpdateInd />} />
-          <Route path="/updatetnpdata/:id" element={<UpdateTnpData />} />
-          <Route path="/deletetnp" element={<DeleteTnp />} />
-          <Route path="/updatelibrary" element={<Library />} />
-          <Route path="/deletelibrary" element={<DeleteLibrary />} />
-          <Route path="/iep" element={<Iep />} />
-          <Route path="/others" element={<Others />} />
-          <Route path="/othersdelete" element={<OthersDelete />} />
-          <Route path="/showalumini" element={<ShowAlumini />} />
-          <Route path="/addind" element={<Ind />} />
-          <Route path="/showind" element={<ShowInds />} />
-          <Route path="/addsyllabus" element={<AddSyllabus />} />
-          <Route path="/addresults" element={<AddResult />} />
-          <Route path="/results" element={<Result />} />
-          <Route path="/studinfo" element={<StudInfo />} />
-          <Route path="/updatestudinfo/:id" element={<UpdateStudInfo />} />
-          <Route path="/addathletics" element={<AddAthletics />} />
-          <Route path="/showathletics" element={<Athletics />} />
-          <Route path="/updateathletics/:id" element={<UpdateAthletics />} />
-          <Route path="/showstud" element={<ShowStudInfo />} />
-          <Route path="/addanalysis" element={<AddAnalysis />} />
-          <Route path="/showanalysis" element={<ShowAnalysis />} />
-          <Route path="/updateanalysis/:id" element={<UpdateAnalysis />} />
-          <Route path="/addconverse" element={<AddConverse />} />
-          <Route path="/converse" element={<Converse />} />
-          <Route path="/updateconverse/:id" element={<UpdateConverse />} />
-          <Route path="/imageupload" element={<ImageUploader />} />
-          <Route path="/imagedelete" element={<ImageDelete />} />
-          <Route path="/signin" element={<SignIn />} />
-        </Routes>
+      {/* This new 'main-content-area' wraps the dynamic content */}
+      <div className="main-content-area">
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Slider />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/updateabout" element={<UpdateAbout />} />
+            <Route path="/addcd" element={<AddCd />} />
+            <Route path="/viewcd" element={<Cd />} />
+            <Route path="/updatecd/:id" element={<UpdateCd />} />
+            <Route path="/updateresult/:id" element={<UpdateResult />} />
+            <Route path="/updatebook/:id" element={<UpdateBook />} />
+            <Route path="/deleteabout" element={<DeleteAbout />} />
+            <Route path="/Message" element={<Message />} />
+            <Route path="/Vision" element={<Vision />} />
+            <Route path="/Mission" element={<Mission />} />
+            <Route path="/Peo" element={<Peo />} />
+            <Route path="/Po" element={<Po />} />
+            <Route path="/Pso" element={<Pso />} />
+            <Route path="/viewbook" element={<Book />} />
+            <Route path="/addbook" element={<AddBook />} />
+            <Route path="/syllabus" element={<Syllabus />} />
+            <Route path="/updatesyllabus/:id" element={<UpdateSyllabus />} />
+            <Route path="/updateresult/:id" element={<UpdateResult />} />
+            <Route path="/addcalender" element={<AddCalender />} />
+            <Route path="/showcalender" element={<ShowCalendar />} />
+            <Route path="/updatecalendar/:id" element={<UpdateCalendar />} />
+            <Route path="/addtable" element={<AddClassTimetable />} />
+            <Route path="/showtable" element={<ShowClassTimetable />} />
+            <Route path="/updateclasstimetable/:id" element={<UpdateClassTimetable />} />
+            <Route path="/scholar" element={<Scholar />} />
+            <Route path="/alumini" element={<Alumini />} />
+            <Route path="/tnp" element={<Tnp />} />
+            <Route path="/addtnp" element={<AddTnp />} />
+            <Route path="/viewtnp" element={<TnpData />} />
+            <Route path="/updateind/:id" element={<UpdateInd />} />
+            <Route path="/updatetnpdata/:id" element={<UpdateTnpData />} />
+            <Route path="/deletetnp" element={<DeleteTnp />} />
+            <Route path="/updatelibrary" element={<Library />} />
+            <Route path="/deletelibrary" element={<DeleteLibrary />} />
+            <Route path="/iep" element={<Iep />} />
+            <Route path="/others" element={<Others />} />
+            <Route path="/othersdelete" element={<OthersDelete />} />
+            <Route path="/showalumini" element={<ShowAlumini />} />
+            <Route path="/addind" element={<Ind />} />
+            <Route path="/showind" element={<ShowInds />} />
+            <Route path="/addsyllabus" element={<AddSyllabus />} />
+            <Route path="/addresults" element={<AddResult />} />
+            <Route path="/results" element={<Result />} />
+            <Route path="/studinfo" element={<StudInfo />} />
+            <Route path="/updatestudinfo/:id" element={<UpdateStudInfo />} />
+            <Route path="/addathletics" element={<AddAthletics />} />
+            <Route path="/showathletics" element={<Athletics />} />
+            <Route path="/updateathletics/:id" element={<UpdateAthletics />} />
+            <Route path="/showstud" element={<ShowStudInfo />} />
+            <Route path="/addanalysis" element={<AddAnalysis />} />
+            <Route path="/showanalysis" element={<ShowAnalysis />} />
+            <Route path="/updateanalysis/:id" element={<UpdateAnalysis />} />
+            <Route path="/addconverse" element={<AddConverse />} />
+            <Route path="/converse" element={<Converse />} />
+            <Route path="/updateconverse/:id" element={<UpdateConverse />} />
+            <Route path="/imageupload" element={<ImageUploader />} />
+            <Route path="/imagedelete" element={<ImageDelete />} />
+            <Route path="/signin" element={<SignIn />} />
+          </Routes>
+        </div>
       </div>
       <Footer />
     </div>
