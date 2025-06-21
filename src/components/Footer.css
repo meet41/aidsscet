@@ -1,13 +1,15 @@
 .footer {
-  text-align: center;
-  margin-bottom: -60%;
-  /* padding: 2px; */
-  background-color: #333;
-  color: white;
-  position: relative;
   width: 100%;
-  border-top: 2px solid #444;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #88c9bf;
+  text-align: center;
+  padding: 12px 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  box-shadow: 0 -2px 8px #88c9bf;
 }
 p{
   padding: -2px;
