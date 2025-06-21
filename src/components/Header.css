@@ -12,8 +12,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    min-height: 120px;
-    padding: 12px 32px;
+    min-height:60px;
+    padding: 10px 10px;
     background-color: #88c9bf;
     box-sizing: border-box;
     position: sticky;
@@ -24,8 +24,8 @@
 /* Logo styles */
 .logo {
     border-radius: 50%;
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 80px;
+    max-height: 800px;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -58,6 +58,7 @@
 .header-text h2 {
     font-size: 1.6rem;
     margin: 8px 0 0 0;
+    font-family: 'Times New Roman', Times, serif;
     color: #000000;
 }
 h1 {
