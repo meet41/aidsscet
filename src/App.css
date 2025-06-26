@@ -2,53 +2,43 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box; /* Crucial for consistent sizing */
+  box-sizing: border-box;
 }
 
 html {
-  /* Set font-family here as well, good practice */
   font-family: "Montserrat", sans-serif;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* Crucial: Prevent scrolling on the html element */
+  overflow: hidden;
 }
 
 body {
-  /*
-  border: 2px solid black; /* Optional: Add a border to the App container */
-  /* If you want this border to be *around* the entire visible layout,
-     and not create "extra space", ensure it's on an element that
-     is *inside* the 100vw boundary, or consider if it's really needed.
-     A border on `body` will typically *add* to the 100vw/100vh unless
-     `box-sizing: border-box;` is applied to `body` itself, which it is globally.
-     However, if the visual effect is what you mean by "extra space", remove this border.
-  */
   display: flex;
-  flex-direction: column; /* Organize children vertically */
-  background: #f0f2f5; /* Consistent background for the entire visible page */
-  color: #333; /* Default text color */
-  width: 100vw; /* Explicitly ensure body takes full viewport width */
-  height: 100vh; /* Explicitly ensure body takes full viewport height */
-  overflow: hidden; /* Crucial: Prevent scrolling on the body element */
+  flex-direction: column;
+  background: #f0f2f5;
+  color: #333;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  --header-h: 64px;
+  --navbar-h: 50px;
+  --footer-h: 40px;
 }
 
-/* Main App container */
 .App {
   display: flex;
   flex-direction: column;
-  height: 100%;       /* Make App fill the height of its parent (body) */
-  width: 100%;        /* Make App fill the width of its parent (body) */
-  overflow: hidden;   /* Prevent scrolling on the App container */
-  margin: 0;          /* Ensure no outer margins */
-  padding: 0;         /* Ensure no outer padding */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* Header */
 .header-container {
-  /* This container helps manage the header if it's not directly fixed */
-  width: 100%; /* Ensure this placeholder container takes full width */
-  flex-shrink: 0; /* Prevent it from shrinking */
-  /* The actual Header component will be absolutely/fixed positioned */
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .header {
@@ -56,131 +46,115 @@ body {
   border-bottom: 2px solid #ddd;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed; /* Header is always at the top */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;       /* Span full viewport width */
-  height: 64px;       /* Fixed header height, adjust as needed */
-  z-index: 1000;      /* Ensure it stays on top */
+  width: 100vw;
+  height: var(--header-h);
+  z-index: 1000;
   display: flex;
-  align-items: center; /* Vertically center content */
-  justify-content: center; /* Horizontally center content (adjust if left/right aligned logos/text) */
-  padding: 0 1rem;    /* Add some horizontal padding for content inside header */
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
 }
 
 /* Navbar styles */
 .navbar-horizontal {
   background: #2c3e50;
-  padding: 10px 20px;
+  padding: 8px 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
-  justify-content: center; /* Center the nav items */
+  justify-content: center;
   align-items: center;
-  position: sticky;   /* Sticky is good for navbar if it follows the header */
-  top: 64px;          /* Sticks directly below the fixed header (64px) */
-  width: 100vw;       /* Span full viewport width */
-  z-index: 999;       /* Below header, above content */
-  flex-shrink: 0;     /* Prevent it from shrinking */
-  /* Ensure menu items are styled correctly for horizontal layout in Navbar.css if not here */
+  position: sticky;
+  top: var(--header-h);
+  width: 100vw;
+  z-index: 999;
+  flex-shrink: 0;
 }
+
 .navbar-horizontal .menu {
   display: flex;
-  gap: 20px; /* Space between nav items */
+  gap: 20px;
 }
+
 .navbar-horizontal a {
   color: #fff;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 4px;
-  white-space: nowrap; /* Prevent text wrapping */
+  white-space: nowrap;
 }
+
 .navbar-horizontal a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Footer */
 .footer {
-  background-color: #88c9bf; /* Light teal background */
+  background-color: #88c9bf;
   color: black;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 550;
-  padding: 1rem 0;
+  padding: 0;
   text-align: center;
   border-top: 2px solid #ddd;
-  position: fixed;    /* Footer is always at the bottom */
+  position: fixed;
   left: 0;
   bottom: 0;
-  width: 100vw;       /* Span full viewport width */
-  height: 40px;       /* Fixed footer height, adjust as needed */
-  z-index: 100;       /* Below header/navbar, but above potential content z-index */
+  width: 100vw;
+  height: var(--footer-h);
+  z-index: 100;
   display: flex;
-  align-items: center; /* Vertically center content */
-  justify-content: center; /* Horizontally center content */
+  align-items: center;
+  justify-content: center;
 }
 
 /* Main Content Area */
-/* This is the key part that will fill the space and scroll */
-.main-content-area { /* This div wraps the Routes in App.jsx */
-  flex-grow: 1;       /* Allow this area to fill available vertical space */
-  width: 100vw;       /* Take full viewport width */
-  /* Calculate height: 100vh - (header_height + navbar_height + footer_height) */
-  /* Use CSS variables for clarity and easy adjustment */
-  --header-h: 64px;
-  --navbar-h: 60px; /* Default for navbar height */
-  --footer-h: 60px;
-
+.main-content-area {
+  flex-grow: 1;
+  width: 100vw;
   height: calc(100vh - var(--header-h) - var(--navbar-h) - var(--footer-h));
-  overflow-y: auto;   /* IMPORTANT: Only this section will scroll vertically */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-
-  /* Add padding to prevent content from going under the fixed header/footer/sticky navbar */
-  padding-top: calc(var(--header-h) + var(--navbar-h)); /* Space for header + navbar */
-  padding-bottom: var(--footer-h); /* Space for footer */
-  box-sizing: border-box; /* Ensure padding is included in the height calculation */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 40px;
+  padding-bottom: 60px;
+  box-sizing: border-box;
 }
 
-/* Adjust --navbar-height for specific scenarios if needed (e.g., in media queries) */
-body {
-  --navbar-height: 60px; /* Global default navbar height variable */
-}
-
-/* Content section (inside main-content-area, where individual route components are rendered) */
+/* Content */
 .content {
-  width: 100%;        /* Take full width of its parent (.main-content-area) */
-  max-width: 1200px;  /* Optional: limit content width for readability */
-  margin: 0 auto;     /* Center the content if max-width is applied */
-  padding: 2rem 1rem; /* Internal padding for the actual route content */
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
   font-size: 18px;
 }
 
-/* The .home class is likely used for the Slider component (e.g., when path is "/") */
 .home {
   width: 100%;
-  padding: 0; /* Remove extra padding for the home/slider page if desired */
+  padding: 0;
 }
 
-/* Hide scrollbar for WebKit browsers */
+/* Hide scrollbars */
 .main-content-area::-webkit-scrollbar {
   display: none;
 }
-
-/* Hide scrollbar for Firefox */
 .main-content-area {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Image Slider */
+/* Slider */
 .slider {
   position: relative;
-  width: 100%; /* Take full width of its parent */
-  max-width: 800px; /* You can keep a max-width for the slider for aesthetic reasons */
+  width: 100%;
+  max-width: 800px;
   border: 2px solid #ddd;
   border-radius: 10px;
-  margin: 0 auto; /* Center the slider */
+  margin: 0 auto 10px auto;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* Add some space below the slider */
 }
 
 .slide {
@@ -195,11 +169,11 @@ body {
 .home-img {
   width: 100%;
   height: auto;
-  display: block; /* Remove extra space below image */
-  border-bottom: 2px solid #ddd; /* Keep if desired */
+  display: block;
+  border-bottom: 2px solid #ddd;
 }
 
-/* Keyframes for slider animation */
+/* Keyframes */
 @keyframes slide {
   0% { opacity: 0; }
   20% { opacity: 1; }
@@ -207,7 +181,7 @@ body {
   100% { opacity: 0; }
 }
 
-/* Spinner for loading */
+/* Spinner */
 .slider-spinner {
   display: flex;
   justify-content: center;
@@ -217,9 +191,9 @@ body {
   color: #555;
 }
 
-/* Logout Button (assuming it's in Header component) */
+/* Logout button */
 .logout-button {
-  margin-left: auto; /* Push it to the right */
+  margin-left: auto;
   padding: 8px 15px;
   background-color: #007bff;
   color: white;
@@ -234,34 +208,39 @@ body {
   background-color: #0056b3;
 }
 
-
-/* Responsive design */
+/* Responsive Design */
 @media (max-width: 768px) {
+  body {
+    --header-h: 48px;
+    --navbar-h: 44px;
+    --footer-h: 48px;
+  }
+
   .header {
-    height: 48px;
+    height: var(--header-h);
   }
+
   .navbar-horizontal {
-    top: 48px; /* Sticks below the smaller header */
-    padding: 8px 10px;
-    --navbar-height: 50px; /* Adjust if mobile navbar height changes */
+    top: var(--header-h);
+    padding: 6px 10px;
   }
+
   .footer {
-    height: 48px;
-    padding: 0.5rem 0;
+    height: var(--footer-h);
+    padding: 0;
   }
+
   .main-content-area {
-    /* Recalculate height and padding for mobile */
-    --header-h: 48px; /* Override header height for mobile */
-    --navbar-h: 50px; /* Override navbar height for mobile */
-    --footer-h: 48px; /* Override footer height for mobile */
     height: calc(100vh - var(--header-h) - var(--navbar-h) - var(--footer-h));
     padding-top: calc(var(--header-h) + var(--navbar-h));
     padding-bottom: var(--footer-h);
   }
+
   .content {
     padding: 1rem 0.5rem;
     font-size: 16px;
   }
+
   .slider {
     max-width: 98vw;
   }
